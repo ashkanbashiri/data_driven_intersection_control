@@ -8,10 +8,10 @@ def generate_phase_times(ct,sf,flows,lt,n_phase,scheme='relative'):
     phase_times = [0]*n_phase
     if scheme =='relative':
         for i in xrange(0,n_phase):
-            phase_times[i] = (flows[i]/sf) * (ct-lt)
+            phase_times[i] = (flows[i]) * (ct-lt)
     elif scheme == 'fair':
         for i in xrange(0,n_phase):
-            phase_times[i] = (0.25/sf) * (ct-lt)
+            phase_times[i] = (0.25) * (ct-lt)
     return phase_times
 
 
