@@ -11,7 +11,7 @@ import time
 def main():
     file_loc = './sim_results/results_sep17'
     df = pd.read_csv(file_loc+'.csv')
-    for i in range(2,12):
+    for i in range(2,17):
         temp_df = pd.read_csv(file_loc+'_'+str(i)+'.csv')
         df = pd.concat([df,temp_df])
 

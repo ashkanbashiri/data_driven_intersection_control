@@ -13,7 +13,7 @@ def analyse(model):
                    [0.0, 1.0],
                    [0.0, 1.0],]
     }
-    param_values = saltelli.sample(problem, 1000)
+    param_values = saltelli.sample(problem, 100000)
     Y1 = np.zeros([param_values.shape[0]])
     Y2 = np.zeros([param_values.shape[0]])
     Y3 = np.zeros([param_values.shape[0]])
