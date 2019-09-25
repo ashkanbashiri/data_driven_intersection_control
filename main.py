@@ -11,7 +11,7 @@ import time
 def main():
     file_loc = './sim_results/results_sep17'
     df = pd.read_csv(file_loc+'.csv')
-    for i in range(2,17):
+    for i in range(2,23):
         temp_df = pd.read_csv(file_loc+'_'+str(i)+'.csv')
         df = pd.concat([df,temp_df])
 
@@ -21,15 +21,15 @@ def main():
     print(df.shape)
     train = filter_best(df, to_predict=to_predict, predictors=predictors, metric=metric)
     print(len(train))
-    batch_size = 200
-    n_epochs = 3000
+    batch_size = 600
+    n_epochs = 1500
     predictions,model = build_model(train,batch_size,n_epochs)
     new_df = pd.DataFrame(predictions,columns=['predicted(1)','predicted(2)','predicted(3)','predicted(4)'])
     print(new_df.head())
     print(train[to_predict].head())
     print(new_df.tail())
     print(train[to_predict].tail())
-    analyse(model)
+    analyse(model,100000)
 
 
 

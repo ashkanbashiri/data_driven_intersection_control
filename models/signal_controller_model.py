@@ -25,6 +25,8 @@ def build_model(df,batch_size,n_epochs):
     model.add(Dense(units=512, activation='relu', input_dim=5))
     model.add(Dense(units=512, activation='relu'))
     model.add(Dense(units=512, activation='relu'))
+    model.add(Dense(units=512, activation='relu'))
+    model.add(Dense(units=512, activation='relu'))
     model.add(Dense(units=4, activation='linear'))
     model.compile(optimizer='adam', loss='mse')
 

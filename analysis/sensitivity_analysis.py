@@ -3,7 +3,7 @@ from SALib.analyze import sobol
 from SALib.test_functions import Ishigami
 import numpy as np
 
-def analyse(model):
+def analyse(model,n_samples):
     problem = {
         'num_vars': 5,
         'names': ['flow1', 'flow2', 'flow3', 'flow4', 'lost_time'],
@@ -13,7 +13,7 @@ def analyse(model):
                    [0.0, 1.0],
                    [0.0, 1.0],]
     }
-    param_values = saltelli.sample(problem, 100000)
+    param_values = saltelli.sample(problem, n_samples)
     Y1 = np.zeros([param_values.shape[0]])
     Y2 = np.zeros([param_values.shape[0]])
     Y3 = np.zeros([param_values.shape[0]])
