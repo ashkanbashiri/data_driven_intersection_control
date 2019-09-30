@@ -32,7 +32,7 @@ def build_model(df,batch_size,n_epochs):
 
     tensorboard = TensorBoard(log_dir='./logs', histogram_freq=0,
                               write_graph=True, write_images=False)
-    model.fit(x, y, batch_size = batch_size, epochs = n_epochs, verbose=2, callbacks=[tensorboard])
+    model.fit(x, y, batch_size = batch_size, epochs = n_epochs, verbose=1, callbacks=[tensorboard])
     predictions = model.predict(x) * multiplier
     return predictions, model
 

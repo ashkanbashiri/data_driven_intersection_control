@@ -1,17 +1,23 @@
+from numpy.random import seed
+from tensorflow import set_random_seed
 import pandas as pd
 from models.signal_controller_model import build_model,build_single_model
 from filter.filter_results import filter_best
 from analysis.sensitivity_analysis import analyse
 import numpy as np
+import time
+
+seed(1)
+set_random_seed(2)
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
-import time
+
 
 def main():
     file_loc = './sim_results/results_sep17'
     df = pd.read_csv(file_loc+'.csv')
-    for i in range(2,23):
+    for i in range(2,25):
         temp_df = pd.read_csv(file_loc+'_'+str(i)+'.csv')
         df = pd.concat([df,temp_df])
 
@@ -22,14 +28,14 @@ def main():
     train = filter_best(df, to_predict=to_predict, predictors=predictors, metric=metric)
     print(len(train))
     batch_size = 600
-    n_epochs = 1500
+    n_epochs = 3000
     predictions,model = build_model(train,batch_size,n_epochs)
     new_df = pd.DataFrame(predictions,columns=['predicted(1)','predicted(2)','predicted(3)','predicted(4)'])
     print(new_df.head())
     print(train[to_predict].head())
     print(new_df.tail())
     print(train[to_predict].tail())
-    analyse(model,100000)
+    analyse(model,3200000)
 
 
 
