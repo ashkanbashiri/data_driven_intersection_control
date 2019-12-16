@@ -18,7 +18,7 @@ def build_model(df,batch_size,n_epochs):
                          test_df['flow3'].values.tolist(), test_df['flow4'].values.tolist(),
                          test_df['lost_time'].values.tolist()))
     y = np.column_stack((df['green_time(1)'].values.tolist(), df['green_time(2)'].values.tolist(),
-                         df['green_time(3)'].values.tolist(), df['green_time(4)'].values.tolist()))
+                         df['green_time(3)'].values.tolist()))
     x = np.column_stack((df['flow(1)'].values.tolist(), df['flow(2)'].values.tolist(),
                          df['flow(3)'].values.tolist(), df['flow(4)'].values.tolist(),
                          df['losttime(s)'].values.tolist()))
@@ -39,7 +39,7 @@ def build_model(df,batch_size,n_epochs):
     model.add(Dense(units=512, activation='relu'))
     model.add(Dense(units=512, activation='relu'))
     model.add(Dense(units=512, activation='relu'))
-    model.add(Dense(units=4, activation='linear'))
+    model.add(Dense(units=3, activation='linear'))
     model.compile(optimizer='adam', loss='mse')
 
     tensorboard = TensorBoard(log_dir='./logs', histogram_freq=0,
@@ -52,7 +52,7 @@ def build_model(df,batch_size,n_epochs):
     plt.xlabel('epoch')
     plt.show()
     paper_predictions = model.predict(x_test) * y_multiplier
-    out_df = pd.DataFrame(paper_predictions,columns=['green_1','green2','green3','green4'])
+    out_df = pd.DataFrame(paper_predictions,columns=['green_1','green2','green3'])
     out_df.to_csv('./paper_predictions_int2.csv')
     return predictions, model
 
